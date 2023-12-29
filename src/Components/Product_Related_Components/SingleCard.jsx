@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import Swal from 'sweetalert2'
+import { addtoLocalStorage } from '../../utils/localStorageState';
 
 const SingleCard = ({ data }) => {
-    console.log(data);
 
     const handleAddToCart = (sid) => {
         Swal.fire({
@@ -15,6 +14,7 @@ const SingleCard = ({ data }) => {
             confirmButtonText: "Yes, Add !"
         }).then((result) => {
             if (result.isConfirmed) {
+                addtoLocalStorage(data);
                 Swal.fire({
                     title: "Added Successfull!",
                     text: "Your product has been added.",

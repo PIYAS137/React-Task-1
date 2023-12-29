@@ -1,16 +1,12 @@
 import { NavLink } from "react-router-dom"
-
+import { FaShoppingCart } from "react-icons/fa";
 
 const AppNavbar = () => {
 
-
     const navLinkes = <>
         <li><NavLink to={'/'}>Homepage</NavLink></li>
-        <li><NavLink to={'/cart'} className="relative">Cart <small className=" absolute right-0 top-0 bg-yellow-500 text-black w-4 h-4 rounded-full flex justify-center items-center font-bold">5</small></NavLink></li>
+        <li><NavLink to={'/cart'} className="relative">Cart <small className=" absolute right-0 -top-1 bg-yellow-500 text-black w-5 h-5 rounded-full flex justify-center items-center font-bold"><FaShoppingCart/> </small></NavLink></li>
     </>
-
-
-
 
     return (
         <div className="navbar bg-gray-800 rounded-b-lg text-white">
