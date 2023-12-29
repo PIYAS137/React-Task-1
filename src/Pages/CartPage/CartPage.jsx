@@ -30,7 +30,6 @@ const CartPage = () => {
     }
   }
 
-
   useEffect(() => {
     const temp = getStoredCartProduct();
     setDatas(temp);
@@ -40,7 +39,6 @@ const CartPage = () => {
   }, [])
 
 
-
   return (
     <div>
       <SectionHeader mainHeader={'Cart Page'} smallHeader={'Products you added'} />
@@ -48,6 +46,9 @@ const CartPage = () => {
         <div className=' space-y-3 col-span-2'>
           {
             datas?.map(one => <CartCard key={one?.id} data={one} handleDeleteProduct={handleDeleteProduct} />)
+          }
+          {
+            datas?.length === 0 && <p className=' bg-red-200 text-red-600 p-3 rounded-lg text-center'>No Product Added</p>
           }
         </div>
         <div className=' col-span-1 border rounded-lg'>
