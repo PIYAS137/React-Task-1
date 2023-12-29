@@ -1,13 +1,13 @@
 import AllProducts from "./AllProducts"
-import SectionHeader from "./SectionHeader"
+import SectionHeader from "../../Shared/SectionHeader/SectionHeader"
 
 
 const ProductSection = () => {
   return (
     <div>
-        <SectionHeader/>
-        <AllProducts/>
-        </div>
+      <SectionHeader mainHeader={'Products'} smallHeader={'Find your required products'} />
+      <AllProducts />
+    </div>
   )
 }
 

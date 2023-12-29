@@ -14,12 +14,20 @@ const SingleCard = ({ data }) => {
             confirmButtonText: "Yes, Add !"
         }).then((result) => {
             if (result.isConfirmed) {
-                addtoLocalStorage(data);
-                Swal.fire({
-                    title: "Added Successfull!",
-                    text: "Your product has been added.",
-                    icon: "success"
-                });
+                const flag = addtoLocalStorage(data);
+                if (flag > 0) {
+                    Swal.fire({
+                        title: "Added Successfull!",
+                        text: "Your product has been added.",
+                        icon: "success"
+                    });
+                } else {
+                    Swal.fire({
+                        title: "Already Added",
+                        text: "This product is already added",
+                        icon: "warning"
+                    });
+                }
             }
         });
     }
