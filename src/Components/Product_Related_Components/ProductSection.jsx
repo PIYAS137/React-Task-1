@@ -2,10 +2,7 @@ import AllProducts from "./AllProducts"
 import SectionHeader from "../../Shared/SectionHeader/SectionHeader"
 
 
-const ProductSection = () => {
-
-
-  // cnetral zone !!
+const ProductSection = ({datas}) => {
 
 
 
@@ -13,7 +10,7 @@ const ProductSection = () => {
   return (
     <div>
       <SectionHeader mainHeader={'Products'} smallHeader={'Find your required products'} />
-      <AllProducts />
+      <AllProducts datas={datas}/>
     </div>
   )
 }

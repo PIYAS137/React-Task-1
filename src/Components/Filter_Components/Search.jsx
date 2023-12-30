@@ -1,14 +1,14 @@
 import { useState } from "react"
 
 
-const Search = () => {
+const Search = ({handleSearchByName}) => {
 
     const [text,setText]=useState('');
     
     const handleSubmit = (event) =>{
         event.preventDefault();
-        console.log(text);
-        setText('');
+        handleSearchByName(text)
+        // setText('');
     }
 
 
