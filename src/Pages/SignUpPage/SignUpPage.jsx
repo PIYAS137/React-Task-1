@@ -34,6 +34,13 @@ const SignUpPage = () => {
                     })
                     .catch(err => {
                         console.log(err);
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "error",
+                            title: `${err.message}`,
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     })
             })
     }
@@ -72,7 +79,7 @@ const SignUpPage = () => {
                 <input {...register("pass", { required: true })} placeholder="Enter your password" type="password" className="input input-bordered bg-gray-600" />
                 {errors.pass && <span className=" text-red-500">This field is required</span>}
                 <label className="label ">
-                    <p>Dont have an account?<Link className=" font-semibold text-blue-400 hover:text-blue-300" to={'/signup'}> Create Account</Link> </p>
+                    <p>Already have an account?<Link className=" font-semibold text-blue-400 hover:text-blue-300" to={'/login'}> Go Login</Link> </p>
                 </label>
             </div>
             <div className="form-control ">

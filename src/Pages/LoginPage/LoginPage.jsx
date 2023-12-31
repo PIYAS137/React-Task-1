@@ -29,6 +29,13 @@ const LoginPage = () => {
         navigate('/')
       }).catch(err => {
         console.log(err);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `${err.message}`,
+          showConfirmButton: false,
+          timer: 1500
+        });
       })
   }
 

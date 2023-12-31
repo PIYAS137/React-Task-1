@@ -5,28 +5,29 @@ import ErrorPage from '../Pages/ErrorPage/ErrorPage';
 import LoginPage from '../Pages/LoginPage/LoginPage';
 import CartPage from '../Pages/CartPage/CartPage';
 import SignUpPage from '../Pages/SignUpPage/SignUpPage';
+import PrivateRoute from '../Private/PrivateRoute';
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:<RootPage/>,
-        errorElement:<ErrorPage/>,
-        children:[
+        path: '/',
+        element: <RootPage />,
+        errorElement: <ErrorPage />,
+        children: [
             {
-                path:'/',
-                element:<HomePage/>
+                path: '/',
+                element: <PrivateRoute><HomePage /></PrivateRoute>
             },
             {
-                path:'/signup',
-                element:<SignUpPage/>
+                path: '/signup',
+                element: <SignUpPage />
             },
             {
-                path:'/login',
-                element:<LoginPage/>
+                path: '/login',
+                element: <LoginPage />
             },
             {
-                path:'/cart',
-                element:<CartPage/>
+                path: '/cart',
+                element: <PrivateRoute><CartPage /></PrivateRoute>
             }
         ]
     }
