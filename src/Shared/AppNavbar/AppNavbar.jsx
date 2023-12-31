@@ -5,8 +5,12 @@ import { AuthContext } from "../../Context/FirebaseContext";
 
 const AppNavbar = () => {
 
-    const {user}=useContext(AuthContext);
-    console.log(user);
+    const { user, FirebaseLogOutUser } = useContext(AuthContext);
+
+    const handleClickLogOut = () => {
+        FirebaseLogOutUser()
+            .then().catch()
+    }
 
     const navLinkes = <>
         <li><NavLink to={'/'}>Homepage</NavLink></li>
@@ -32,9 +36,16 @@ const AppNavbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <NavLink to={'/login'}>
-                    <button className="btn bg-gray-700 hover:bg-gray-600 text-white border-none">Login</button>
-                </NavLink>
+                {user?.email ?
+                    <button onClick={handleClickLogOut} className="btn bg-red-700 hover:bg-red-600 text-white border-none">Logout</button>
+                    :
+                    <NavLink to={'/login'}><button className="btn bg-gray-700 hover:bg-gray-600 text-white border-none">Login</button></NavLink>
+                }
+                {
+                    user?.photoURL && <div className="w-12 aspect-square rounded-full ml-2 overflow-hidden">
+                        <img src={user?.photoURL} />
+                    </div>
+                }
             </div>
         </div>
     )

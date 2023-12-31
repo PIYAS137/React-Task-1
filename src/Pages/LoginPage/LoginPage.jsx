@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/FirebaseContext";
+import Swal from "sweetalert2";
 
 const LoginPage = () => {
 
-  const {FirebaseLogin} = useContext(AuthContext)
+  const { FirebaseLogin } = useContext(AuthContext)
+  const navigate = useNavigate('/')
 
   const {
     register,
@@ -15,7 +17,19 @@ const LoginPage = () => {
   } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data);
+    FirebaseLogin(data.email, data.pass)
+      .then(res => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Successfully Log in ",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/')
+      }).catch(err => {
+        console.log(err);
+      })
   }
 
 
