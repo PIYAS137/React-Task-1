@@ -1,9 +1,15 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/FirebaseContext";
+import Swal from 'sweetalert2'
 
 
 
 const SignUpPage = () => {
+
+    const { FirebaseSignup, FirebaseUpdateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     const {
         register,
@@ -13,9 +19,24 @@ const SignUpPage = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data);
+        FirebaseSignup(data.email, data.pass)
+            .then(res => {
+                FirebaseUpdateUserProfile(data.name, data.photo)
+                    .then(res => {
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Signup Successfull !",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            })
     }
-
 
 
 
@@ -41,14 +62,14 @@ const SignUpPage = () => {
                 <label className="label">
                     <span className="label-text text-white">Email</span>
                 </label>
-                <input {...register("email", { required: true })} placeholder="Enter your email" className="input input-bordered bg-gray-600" />
+                <input {...register("email", { required: true })} placeholder="Enter your email" type="email" className="input input-bordered bg-gray-600" />
                 {errors.email && <span className=" text-red-500">This field is required</span>}
             </div>
             <div className="form-control">
                 <label className="label">
                     <span className="label-text text-white">Password</span>
                 </label>
-                <input {...register("pass", { required: true })} placeholder="Enter your password" className="input input-bordered bg-gray-600" />
+                <input {...register("pass", { required: true })} placeholder="Enter your password" type="password" className="input input-bordered bg-gray-600" />
                 {errors.pass && <span className=" text-red-500">This field is required</span>}
                 <label className="label ">
                     <p>Dont have an account?<Link className=" font-semibold text-blue-400 hover:text-blue-300" to={'/signup'}> Create Account</Link> </p>

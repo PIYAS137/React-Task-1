@@ -1,7 +1,12 @@
 import { NavLink } from "react-router-dom"
 import { FaShoppingCart } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../../Context/FirebaseContext";
 
 const AppNavbar = () => {
+
+    const {user}=useContext(AuthContext);
+    console.log(user);
 
     const navLinkes = <>
         <li><NavLink to={'/'}>Homepage</NavLink></li>

@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { useForm } from "react-hook-form"
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Context/FirebaseContext";
 
 const LoginPage = () => {
+
+  const {FirebaseLogin} = useContext(AuthContext)
 
   const {
     register,
